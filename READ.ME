@@ -1,0 +1,38 @@
+# AI-Powered Image Recognition Pipeline
+
+An event-driven, serverless pipeline built on AWS that automatically detects objects in uploaded images using machine learning.
+
+## 🚀 Overview
+This project demonstrates a cloud-native architecture for real-time image processing. When a user uploads an image to an S3 bucket, a Lambda function is automatically triggered. This function interacts with AWS Rekognition to extract labels (objects, scenes, and concepts) and stores the metadata in a DynamoDB table.
+
+### Key Features
+* **Event-Driven:** Uses S3 Event Notifications to eliminate manual triggers.
+* **AI Integration:** Leverages AWS Rekognition (Computer Vision) for high-accuracy object detection.
+* **Sub-second Latency:** Optimized for fast execution, completing the end-to-end flow in < 1 second.
+* **Serverless:** Scalable and cost-effective; no servers to manage.
+
+## 🏗️ Architecture
+1.  **Storage:** Amazon S3 (Input Bucket)
+2.  **Compute:** AWS Lambda (Python 3.12)
+3.  **Intelligence:** AWS Rekognition (DetectLabels API)
+4.  **Database:** Amazon DynamoDB (Metadata Storage)
+5.  **Monitoring:** Amazon CloudWatch (Logging & Performance)
+
+## 🛠️ Technical Stack
+* **Cloud Provider:** Amazon Web Services (AWS)
+* **Language:** Python 3.x
+* **Library:** Boto3 (AWS SDK for Python)
+
+## 📖 How it Works
+1.  An image is uploaded to the designated **S3 Bucket**.
+2.  An **S3:ObjectCreated** event triggers the **Lambda function**.
+3.  The Lambda function extracts the bucket name and object key.
+4.  The function sends the image to **AWS Rekognition**.
+5.  Detected labels with a confidence score > 80% are parsed.
+6.  The image name and its corresponding labels are saved into **DynamoDB**.
+
+## 📊 Performance Monitoring
+Using **Amazon CloudWatch**, I monitored the performance of the pipeline.
+* **Average Execution Time:** ~450ms - 700ms
+* **Memory Footprint:** ~60MB - 80MB
+* **Success Rate:** 100% (based on test image sets)
