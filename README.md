@@ -1,3 +1,4 @@
+
 # 👁️ AI-Powered Image Recognition Pipeline (AWS Rekognition)
 
 An event-driven, serverless machine learning pipeline that automatically identifies objects in images upon upload. This project demonstrates a cloud-native architecture for real-time data processing and AI integration.
@@ -64,3 +65,17 @@ The goal of this project was to build a fully automated system that processes im
 * 3. Trigger: Configure an S3 Bucket notification to trigger the Lambda function on All object create events.
 
 * 4. Test: Upload an image to the bucket and refresh your DynamoDB table to see the AI results!
+
+## 📖 How it Works
+1.  An image is uploaded to the designated **S3 Bucket**.
+2.  An **S3:ObjectCreated** event triggers the **Lambda function**.
+3.  The Lambda function extracts the bucket name and object key.
+4.  The function sends the image to **AWS Rekognition**.
+5.  Detected labels with a confidence score > 80% are parsed.
+6.  The image name and its corresponding labels are saved into **DynamoDB**.
+
+## 📊 Performance Monitoring
+Using **Amazon CloudWatch**, I monitored the performance of the pipeline.
+* **Average Execution Time:** ~450ms - 700ms
+* **Memory Footprint:** ~60MB - 80MB
+* **Success Rate:** 100% (based on test image sets)
