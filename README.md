@@ -72,7 +72,7 @@ The goal of this project was to build a fully automated system that processes im
 3.  The Lambda function extracts the bucket name and object key.
 4.  The function sends the image to **AWS Rekognition**.
 5.  Detected labels with a confidence score > 80% are parsed.
-6.  The image name and its corresponding labels are saved into **DynamoDB**.
+6.  The image id and its corresponding labels are saved into **DynamoDB**.
 
 ## 📊 Performance Monitoring
 Using **Amazon CloudWatch**, I monitored the performance of the pipeline.
